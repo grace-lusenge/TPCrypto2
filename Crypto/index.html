@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Cryptographie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+        }
+        .btn-nav {
+            margin: 5px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        .footer a:hover {
+            color: #f8f9fa;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="container">
+    <!-- En-tête -->
+    <div class="header mb-5">
+        <h1>TP Cryptographie</h1>
+        <div>
+            <button id="btnAccueil" class="btn btn-light btn-nav">Accueil</button>
+            <a href="tp-cryptographie.html" class="btn btn-light btn-nav">TP Cryptographie</a>
+        </div>
+    </div>
+
+    <!-- Page d'accueil -->
+    <div id="accueil" class="container">
+        <div class="card shadow p-4">
+            <h2 class="text-center text-primary mb-4">Bienvenue sur la page d'accueil</h2>
+            <p>
+                Ce travail pratique est dédié à l'étude des techniques de cryptographie et de cryptanalyse. Vous y trouverez des exercices pratiques pour comprendre et appliquer les concepts de chiffrement et de déchiffrement.
+            </p>
+            <p>
+                <strong>Objectifs du TP :</strong>
+            </p>
+            <ul>
+                <li>Déchiffrement César avec analyse fréquentielle.</li>
+                <li>Chiffrement et déchiffrement AES avec différents modes.</li>
+                <li>Conversion d'entiers ASCII en texte.</li>
+                <li>Déchiffrement Base64.</li>
+                <li>Conversion binaire.</li>
+                <li>Recherche sur les méthodes cryptanalytiques.</li>
+            </ul>
+            <p>
+                Cliquez sur le bouton <strong>"TP Cryptographie"</strong> pour accéder aux exercices.
+            </p>
+        </div>
+    </div>
+
+    <!-- Page de contenu (TP Cryptographie) -->
+    <div id="tp-cryptographie" class="container mt-5 hidden">
+        <!-- Insérez ici le code des exercices de cryptographie que vous avez fourni -->
+        <!-- ... -->
+    </div>
+
+    <!-- Pied de page -->
+    <div class="footer">
+        <h4>Informations des participants</h4>
+        <p>
+            <strong>Université :</strong> Université de l'Assomption au Congo<br>
+            <strong>Participants :</strong><br>
+            - Kavira Mbulinyolo Marguerite<br>
+            - Kahindo Basisia Gloria<br>
+            - Kambale Ndotoli Heritier<br>
+        </p>
+    </div>
+
+    <script>
+        // Gestion de la navigation
+        const btnAccueil = document.getElementById('btnAccueil');
+        const btnTP = document.getElementById('btnTP');
+        const accueil = document.getElementById('accueil');
+        const tpCryptographie = document.getElementById('tp-cryptographie');
+
+        // Afficher la page d'accueil par défaut
+        accueil.classList.remove('hidden');
+        tpCryptographie.classList.add('hidden');
+
+        // Gestion des clics sur les boutons
+        btnAccueil.addEventListener('click', () => {
+            accueil.classList.remove('hidden');
+            tpCryptographie.classList.add('hidden');
+        });
+
+        btnTP.addEventListener('click', () => {
+            accueil.classList.add('hidden');
+            tpCryptographie.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
