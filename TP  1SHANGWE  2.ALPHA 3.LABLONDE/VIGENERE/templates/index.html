@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiffrement de Vigenère</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bg-blue {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center bg-blue">Chiffrement de Vigenère</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="message">Message</label>
+                <input type="text" class="form-control" id="message" name="message" placeholder="Entrez votre message">
+            </div>
+            <div class="form-group">
+                <label for="cle">Clé</label>
+                <input type="text" class="form-control" id="cle" name="cle" placeholder="Entrez la clé">
+            </div>
+            <button type="submit" class="btn btn-primary">Chiffrer</button>
+        </form>
+        <div class="mt-3">
+            <h3>Message chiffré:</h3>
+            <p>{{ message_chiffre }}</p>
+        </div>
+    </div>
+</body>
+</html>

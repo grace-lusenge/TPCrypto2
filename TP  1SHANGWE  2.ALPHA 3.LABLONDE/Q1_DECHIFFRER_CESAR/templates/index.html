@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déchiffrement César</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Déchiffrement César</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="texte_chiffre">Message chiffré</label>
+                <textarea class="form-control" id="texte_chiffre" name="texte_chiffre" rows="3" placeholder="Entrez le message chiffré"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Déchiffrer</button>
+        </form>
+        {% if resultats %}
+        <h2 class="mt-5">Résultats</h2>
+        <ul class="list-group">
+            {% for decalage, resultat in resultats %}
+            <li class="list-group-item"><strong>Décalage {{ decalage }}:</strong> {{ resultat }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
