@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Cryptographie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+        }
+        .btn-nav {
+            margin: 5px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #e0a800;
+            transform: translateY(-2px);
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #138496;
+            transform: translateY(-2px);
+        }
+        textarea {
+            border-radius: 10px;
+        }
+        .form-select {
+            border-radius: 10px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        h2 {
+            color: #007bff;
+            font-weight: bold;
+        }
+        .section-title {
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .section-content {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body class="container py-4 bg-light">
+    <div class="header mb-5">
+        <h1>TP Cryptographie</h1>
+        <div>
+            <a href="index.html" class="btn btn-light btn-nav">Accueil</a>
+            <a href="tp-cryptographie.html" class="btn btn-light btn-nav">TP Cryptographie</a>
+        </div>
+    </div>
+
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary mb-4">TP Cryptographie</h2>
+
+        <!-- Déchiffrement César avec analyse fréquentielle -->
+        <div class="mb-4">
+            <h4 class="text-secondary">1. Déchiffrement César (Analyse fréquentielle)</h4>
+            <input type="text" id="cesarInput" class="form-control" placeholder="Texte chiffré">
+            <button class="btn btn-primary mt-2 w-100" onclick="dechiffrerCesar()">Déchiffrer</button>
+            <ul id="cesarOutput" class="mt-2 list-group"></ul>
+        </div>
+
+        <!-- Chiffrement/Déchiffrement AES avec plusieurs modes -->
+        <div class="mb-4">
+            <h4 class="text-secondary">2. Chiffrement AES</h4>
+            <input type="text" id="aesInput" class="form-control" placeholder="Message clair">
+            <input type="text" id="aesKey" class="form-control mt-2" placeholder="Clé (16 caractères)">
+            <select id="aesMode" class="form-select mt-2">
+                <option value="ECB">ECB</option>
+                <option value="CBC">CBC</option>
+                <option value="CTR">CTR</option>
+                <option value="OFB">OFB</option>
+                <option value="CFB">CFB</option>
+            </select>
+            <div class="d-flex gap-2 mt-2">
+                <button class="btn btn-success flex-grow-1" onclick="chiffrerAES()">Chiffrer</button>
+                <button class="btn btn-warning flex-grow-1" onclick="dechiffrerAES()">Déchiffrer</button>
+            </div>
+            <p id="aesOutput" class="mt-2 alert alert-info"></p>
+        </div>
+
+        <!-- Conversion d'entiers ASCII en texte -->
+        <div class="mb-4">
+            <h4 class="text-secondary">3. Conversion d'entiers ASCII en texte</h4>
+            <input type="text" id="asciiInput" class="form-control" 
+            placeholder="Entrez des nombres séparés par des virgules">
+            <button class="btn btn-info mt-2 w-100" 
+            onclick="convertirASCII()">Convertir</button>
+            <p id="asciiOutput" class="mt-2 alert alert-success"></p>
+        </div>
+
+        <!-- Déchiffrement Base64 -->
+        <div class="mb-4">
+            <h4 class="text-secondary">4. Déchiffrement Base64</h4>
+            <textarea id="base64Text" class="form-control" placeholder="Entrez le texte en Base64 ici"></textarea>
+            <button onclick="decodeBase64()" class="btn btn-primary mt-2 w-100">Déchiffrer</button>
+            <div id="base64Result" class="mt-2 alert alert-warning"></div>
+        </div>
+
+        <!-- Conversion binaire -->
+        <div class="mb-4">
+            <h4 class="text-secondary">5. Conversion binaire</h4>
+            <textarea id="binaryText" class="form-control" placeholder="Entrez le texte binaire ici"></textarea>
+            <button onclick="convertBinary()" class="btn btn-primary mt-2 w-100">Convertir</button>
+            <div id="binaryResult" class="mt-2 alert alert-danger"></div>
+        </div>
+
+        <!-- Exercice 6: Recherche sur les méthodes cryptanalytiques -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Exercice 6: Recherche sur les méthodes cryptanalytiques
+            </div>
+            <div class="card-body">
+                <p>La cryptanalyse des algorithmes de chiffrement classiques vise à déduire le texte en clair à partir du texte chiffré, en exploitant des faiblesses ou des patterns dans le système de chiffrement. Voici une présentation des méthodes cryptanalytiques associées aux algorithmes de chiffrement classiques : Affine, Vigenère, Hill et Rail Fence.</p>
+
+                <div class="section-title">1. Chiffrement Affine</div>
+                <div class="section-content">
+                    <p>Le chiffrement affine est une substitution monoalphabétique où chaque lettre du texte en clair est transformée selon la fonction :</p>
+                    <p><strong>E(x) = (a × x + b) mod m</strong></p>
+                    <p>où <strong>a</strong> et <strong>b</strong> sont des clés, <strong>m</strong> est la taille de l'alphabet (généralement 26 pour l'alphabet latin), et <strong>x</strong> est la position de la lettre dans l'alphabet.</p>
+                    <p><strong>Cryptanalyse du chiffrement affine :</strong></p>
+                    <ul>
+                        <li><strong>Propriétés mathématiques :</strong> La clé <strong>a</strong> doit être choisie de manière à être inversible modulo <strong>m</strong>, c'est-à-dire que <strong>a</strong> et <strong>m</strong> doivent être premiers entre eux (leur PGCD doit être 1). Cela garantit que chaque lettre du texte chiffré correspond à une lettre unique du texte en clair.</li>
+                        <li><strong>Attaque par fréquence :</strong> Comme il s'agit d'une substitution monoalphabétique, les lettres du texte chiffré conservent les fréquences du texte en clair. En analysant la fréquence des lettres dans le texte chiffré et en les associant aux fréquences typiques de la langue utilisée, il est possible de déduire les correspondances entre les lettres chiffrées et les lettres en clair, permettant ainsi de retrouver les clés <strong>a</strong> et <strong>b</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="section-title">2. Chiffrement de Vigenère</div>
+                <div class="section-content">
+                    <p>Le chiffrement de Vigenère est une substitution polyalphabétique qui utilise une clé répétée pour chiffrer le texte. Chaque lettre du texte en clair est décalée selon la position correspondante de la clé.</p>
+                    <p><strong>Cryptanalyse du chiffrement de Vigenère :</strong></p>
+                    <ul>
+                        <li><strong>Longueur de la clé :</strong> La première étape consiste à déterminer la longueur de la clé. Cela peut être accompli en utilisant l'indice de coïncidence ou en recherchant des répétitions de séquences de lettres dans le texte chiffré.</li>
+                        <li><strong>Analyse de fréquence :</strong> Une fois la longueur de la clé déterminée, le texte chiffré est divisé en sous-textes correspondant à chaque position de la clé. Chaque sous-texte est ensuite analysé séparément comme un chiffrement de César, permettant de déduire les décalages utilisés pour chaque position de la clé.</li>
+                        <li><strong>Attaque de Kasiski :</strong> Cette méthode repose sur l'identification de séquences répétées dans le texte chiffré. En analysant les distances entre ces répétitions, il est possible de déterminer la longueur de la clé, puis d'appliquer l'analyse de fréquence pour chaque position de la clé.</li>
+                    </ul>
+                </div>
+
+                <div class="section-title">3. Chiffrement de Hill</div>
+                <div class="section-content">
+                    <p>Le chiffrement de Hill est un chiffrement par substitution polyalphabétique basé sur l'algèbre linéaire. Il utilise une matrice carrée comme clé pour transformer des blocs de lettres.</p>
+                    <p><strong>Cryptanalyse du chiffrement de Hill :</strong></p>
+                    <ul>
+                        <li><strong>Propriétés de la matrice clé :</strong> La matrice clé doit être inversible modulo 26 (si l'on considère l'alphabet latin), ce qui implique que son déterminant doit être premier avec 26. Si la matrice n'est pas inversible, le chiffrement est vulnérable.</li>
+                        <li><strong>Attaque par fréquence :</strong> En divisant le texte chiffré en blocs de la même taille que la matrice clé, il est possible de constituer un système d'équations linéaires. En résolvant ce système, on peut déterminer la matrice clé et, par conséquent, déchiffrer le texte.</li>
+                    </ul>
+                </div>
+
+                <div class="section-title">4. Chiffrement Rail Fence</div>
+                <div class="section-content">
+                    <p>Le chiffrement Rail Fence est un chiffrement par transposition qui écrit le texte en zigzag sur plusieurs "rails" (lignes) et lit les lettres ligne par ligne pour obtenir le texte chiffré.</p>
+                    <p><strong>Cryptanalyse du chiffrement Rail Fence :</strong></p>
+                    <ul>
+                        <li><strong>Détermination du nombre de rails :</strong> En analysant la longueur du texte chiffré et en testant différentes configurations de rails, il est possible de déterminer le nombre de rails utilisé.</li>
+                        <li><strong>Reconstruction du texte :</strong> Une fois le nombre de rails connu, le texte chiffré est réarrangé en suivant le motif du zigzag. En reconstruisant correctement le motif, le texte en clair peut être récupéré.</li>
+                    </ul>
+                </div>
+
+                <div class="section-title">Conclusion</div>
+                <div class="section-content">
+                    <p>La cryptanalyse des algorithmes de chiffrement classiques repose sur l'exploitation de leurs structures et de leurs faiblesses inhérentes. Les attaques par fréquence, l'analyse de la longueur des clés et l'exploitation des propriétés mathématiques des clés sont des techniques couramment utilisées pour briser ces systèmes de chiffrement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function dechiffrerCesar() {
+            let texte = document.getElementById('cesarInput').value.toUpperCase();
+            let output = document.getElementById('cesarOutput');
+            output.innerHTML = '';
+            let frequence = "ETAOINSHRDLCUMWFGYPBVKJXQZ";
+            let lettres = texte.replace(/[^A-Z]/g, "");
+            let count = {};
+            for (let lettre of lettres) count[lettre] = (count[lettre] || 0) + 1;
+            let sorted = Object.keys(count).sort((a, b) => count[b] - count[a]);
+            let solutions = [];
+            for (let i = 0; i < Math.min(5, sorted.length); i++) {
+                let decalage = sorted[i].charCodeAt(0) - 'E'.charCodeAt(0);
+                let texteDechiffre = '';
+                for (let char of texte) {
+                    if (char >= 'A' && char <= 'Z') {
+                        texteDechiffre += String.fromCharCode(((char.charCodeAt(0) - 65 - decalage + 26) % 26) + 65);
+                    } else {
+                        texteDechiffre += char;
+                    }
+                }
+                solutions.push(`Décalage ${decalage}: ${texteDechiffre}`);
+            }
+            solutions.forEach(sol => output.innerHTML += `<li class='list-group-item'>${sol}</li>`);
+        }
+
+        function chiffrerAES() {
+            let message = document.getElementById('aesInput').value;
+            let key = document.getElementById('aesKey').value;
+            let mode = document.getElementById('aesMode').value;
+            if (key.length !== 16) {
+                alert("La clé doit avoir 16 caractères!");
+                return;
+            }
+            let options = { ECB: CryptoJS.mode.ECB, CBC: CryptoJS.mode.CBC, CTR: CryptoJS.mode.CTR, OFB: CryptoJS.mode.OFB, CFB: CryptoJS.mode.CFB };
+            let iv = CryptoJS.lib.WordArray.random(16);
+            let encrypted = CryptoJS.AES.encrypt(message, CryptoJS.enc.Utf8.parse(key), { mode: options[mode], padding: CryptoJS.pad.Pkcs7, iv: iv }).toString();
+            document.getElementById('aesOutput').textContent = `Chiffré (mode ${mode}): ${encrypted} | IV: ${CryptoJS.enc.Base64.stringify(iv)}`;
+        }
+
+        function dechiffrerAES() {
+            let outputText = document.getElementById('aesOutput').textContent.split('|');
+            if (outputText.length < 2) {
+                alert("Veuillez chiffrer un message avant de le déchiffrer.");
+                return;
+            }
+            let encrypted = outputText[0].split(': ')[1].trim();
+            let ivBase64 = outputText[1].split(': ')[1].trim();
+            let key = document.getElementById('aesKey').value;
+            let mode = document.getElementById('aesMode').value;
+            if (key.length !== 16) {
+                alert("La clé doit avoir 16 caractères!");
+                return;
+            }
+            let options = { ECB: CryptoJS.mode.ECB, CBC: CryptoJS.mode.CBC, CTR: CryptoJS.mode.CTR, OFB: CryptoJS.mode.OFB, CFB: CryptoJS.mode.CFB };
+            let iv = CryptoJS.enc.Base64.parse(ivBase64);
+            let decrypted = CryptoJS.AES.decrypt(encrypted, CryptoJS.enc.Utf8.parse(key), { mode: options[mode], padding: CryptoJS.pad.Pkcs7, iv: iv }).toString(CryptoJS.enc.Utf8);
+            document.getElementById('aesOutput').textContent = `Déchiffré: ${decrypted}`;
+        }
+
+        function convertirASCII() {
+            let input = document.getElementById('asciiInput').value.split(',').map(num => parseInt(num.trim()));
+            let texte = String.fromCharCode(...input);
+            document.getElementById('asciiOutput').textContent = `Message : ${texte}`;
+        }
+
+        function decodeBase64() {
+            let base64Text = document.getElementById('base64Text').value;
+            try {
+                let decodedText = atob(base64Text);
+                document.getElementById('base64Result').textContent = `Texte déchiffré : ${decodedText}`;
+            } catch (e) {
+                document.getElementById('base64Result').textContent = "Erreur : Texte Base64 invalide.";
+            }
+        }
+
+        function convertBinary() {
+            let binaryText = document.getElementById('binaryText').value;
+            let binaryArray = binaryText.split(' ');
+            let text = '';
+            for (let binary of binaryArray) {
+                text += String.fromCharCode(parseInt(binary, 2));
+            }
+            document.getElementById('binaryResult').textContent = `Texte converti : ${text}`;
+        }
+    </script>
+</body>
+</html>
