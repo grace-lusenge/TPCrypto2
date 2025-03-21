@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion ASCII</title>
+    <!-- Bootstrap CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Cryptographie</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cesar">César</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aes">AES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ascii">Conversion ASCII</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/base64">Décodage Base64</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/binary">Conversion Binaire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cryptanalysis">Cryptanalyse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversion ASCII</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="numbers" class="form-label">Entrez une liste de nombres (séparés par des virgules) :</label>
+                                <input type="text" class="form-control" id="numbers" name="numbers" required>
+                                <small class="form-text text-muted">Exemple : 78, 79, 85, 83</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Convertir</button>
+                        </form>
+
+                        {% if message %}
+                        <h4 class="mt-4">Résultat :</h4>
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                        {% endif %}
+
+                        {% if error %}
+                        <h4 class="mt-4">Erreur :</h4>
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-light text-center py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>À propos</h5>
+                    <p>
+                        Plateforme éducative dédiée à la cryptographie et à la cryptanalyse.Cette Plateforme a été realisé par:
+                        <ul class="list-unstyled">
+                            <li>MUMBERE KAVALAMI MUYISA</li>
+                            <li>KASEREKA LUSENGE GRACE</li>
+                            <li>MUMBERE MASIMENGO JANVIER</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liens utiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-light">Accueil</a></li>
+                        <li><a href="https://www.uaconline.edu.cd/" class="text-light">UAC</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p>Email: support@cryptographie.com</p>
+                    <p>Téléphone: +243 956 789 456</p>
+                    <p>Adresse: Université de l'Assomption au Congo</p>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="mb-0">&copy; 2025 Cryptographie - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
